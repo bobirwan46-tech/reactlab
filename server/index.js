@@ -21,7 +21,10 @@ const app = express();
 
 /*
   CORS Configuration
-  Allows requests from React frontend
+  Allows requests from:
+  - Local React development server
+  - Same Wi-Fi device testing
+  - Production Render frontend
 */
 app.use(
   cors({
@@ -37,6 +40,8 @@ app.use(
       "http://192.168.68.115:5173",
       "http://192.168.68.115:5174",
       "http://192.168.68.115:5175",
+
+      "https://reactlab-oosa.onrender.com",
     ],
     credentials: true,
   })
@@ -70,6 +75,7 @@ app.use("/users", usersRoutes);
 
 /*
   Global Error Handler
+  Must always be AFTER routes
 */
 app.use(errorHandler);
 
